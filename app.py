@@ -274,9 +274,10 @@ Posteriormente, se contabilizó el número de observaciones de cada combinación
 y se transformó el resultado a un formato ancho, donde cada fila representa
 una alcaldía y cada columna una categoría delictiva.
 
-Esta decisión reduce una base de casi dos millones de registros a una tabla
-resumida que permite comparar de manera directa la distribución territorial
-de los delitos.
+El tratamiento fue estrictamente necesario debido al tamaño del documento y 
+su publicación en esta plataforma. Se redujo una base de casi dos 
+millones de registros a una tabla resumida que permite comparar de manera 
+directa la distribución territorial de los delitos.
 """
 )
 
@@ -310,10 +311,28 @@ tabla["Registros"] = (
     .astype(int)
 )
 
+tabla_mostrada = tabla.copy()
+
+tabla_mostrada["Registros"] = (
+    tabla_mostrada["Registros"]
+    .map(lambda valor: f"{valor:,}")
+)
+
 st.dataframe(
-    tabla,
+    tabla_mostrada,
     use_container_width=True,
-    hide_index=True
+    hide_index=True,
+    height=600,
+    column_config={
+        "Alcaldía": st.column_config.TextColumn(
+            "Alcaldía",
+            width="medium"
+        ),
+        "Registros": st.column_config.TextColumn(
+            "Registros",
+            width="small"
+        )
+    }
 )
 
 st.download_button(
