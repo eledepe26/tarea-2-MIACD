@@ -20,10 +20,20 @@ st.caption("Luis Alberto De la Peña Chávez")
 
 st.markdown(
     """
+Con un dataset extenso real (INEGI, Datos Abiertos MX, Kaggle):
+
 Se trabajó con los datos de carpetas de investigación de la Fiscalía General
 de Justicia de la Ciudad de México. La información se simplificó mediante una
 agrupación por alcaldía y categoría general del delito, con el propósito de
 comparar territorialmente el número de registros.
+link: https://archivo.datos.cdmx.gob.mx/FGJ/carpetas/carpetasFGJ_acumulado_2025_01.csv
+
+1. Aplica **una técnica de simplificación** justificada (`groupby`/`resample`/muestreo).
+2. Construye **una visualización interactiva** (Plotly o Altair) y **un mapa coroplético**.
+3. Pide a una herramienta de IA un *insight* sobre el dataset y **valídalo o refútalo** con tu propio análisis.
+
+En 3-4 líneas: ¿qué decisión de agregación tomaste y cómo cambiaría la historia con otra?
+
 """
 )
 
