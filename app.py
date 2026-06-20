@@ -392,8 +392,9 @@ st_folium(
 st.divider()
 
 
-st.subheader("Insight y validación")
-
+st.header(
+    "3. Pide a una herramienta de IA un *insight* sobre el dataset y **valídalo o refútalo** con tu propio análisis."
+)
 st.markdown(
     """
 ### Insight principal
@@ -422,17 +423,6 @@ de los delitos menos comunes.
 
 st.divider()
 
-st.markdown(
-    """
-### Decisión de agregación
 
-Se agruparon los registros por **alcaldía del hecho** y
-**categoría general del delito**. Esta simplificación permite comparar el
-volumen territorial y reducir la complejidad de una base con casi dos millones
-de observaciones.
-
-Con una agregación por tasa poblacional, en lugar de conteos absolutos, la
-interpretación cambiaría de concentración de registros a riesgo relativo por
-habitante.
 """
 )
