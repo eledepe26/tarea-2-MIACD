@@ -63,8 +63,6 @@ def normalizar_texto(texto):
         if not unicodedata.combining(caracter)
     )
 
-
-@st.cache_data
 def preparar_informacion(agrupacion, municipio):
 
     agrupacion = agrupacion.copy()
