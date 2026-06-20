@@ -393,8 +393,10 @@ st.divider()
 
 
 st.header(
-    "3. Pide a una herramienta de IA un *insight* sobre el dataset y **valídalo o refútalo** con tu propio análisis."
+    "3. Pide a una herramienta de IA un *insight* sobre el dataset" 
+    "y **valídalo o refútalo** con tu propio análisis."
 )
+
 st.markdown(
     """
 ### Insight principal
