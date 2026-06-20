@@ -319,20 +319,21 @@ tabla_mostrada["Registros"] = (
 )
 
 st.dataframe(
-    tabla_mostrada,
-    use_container_width=True,
+    tabla_mostrada.style.set_properties(
+        **{"text-align": "center"}
+    ).set_table_styles(
+        [
+            {
+                "selector": "th",
+                "props": [
+                    ("text-align", "center")
+                ]
+            }
+        ]
+    ),
+    width=800,
     hide_index=True,
-    height=600,
-    column_config={
-        "Alcaldía": st.column_config.TextColumn(
-            "Alcaldía",
-            width="medium"
-        ),
-        "Registros": st.column_config.TextColumn(
-            "Registros",
-            width="small"
-        )
-    }
+    height=600
 )
 
 st.download_button(
