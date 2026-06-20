@@ -22,11 +22,11 @@ st.markdown(
     """
 Con un dataset extenso real (INEGI, Datos Abiertos MX, Kaggle):
 
-Se trabajó con los datos de carpetas de investigación de la Fiscalía General
-de Justicia de la Ciudad de México. La información se simplificó mediante una
+Se trabajó con los datos de las [Carpetas de investigación de la Fiscalía General
+de Justicia de la Ciudad de México](https://archivo.datos.cdmx.gob.mx/FGJ/carpetas/carpetasFGJ_acumulado_2025_01.csv).
+La información se simplificó mediante una
 agrupación por alcaldía y categoría general del delito, con el propósito de
 comparar territorialmente el número de registros.
-link: https://archivo.datos.cdmx.gob.mx/FGJ/carpetas/carpetasFGJ_acumulado_2025_01.csv
 
 1. Aplica **una técnica de simplificación** justificada (`groupby`/`resample`/muestreo).
 2. Construye **una visualización interactiva** (Plotly o Altair) y **un mapa coroplético**.
@@ -254,25 +254,34 @@ st.sidebar.metric(
     f"{int(agrupacion1[categoria_seleccionada].sum()):,}"
 )
 
+
+# =========================================================
+# 1. TÉCNICA DE SIMPLIFICACIÓN
+# =========================================================
+
+st.header(
+    "1. Aplica una técnica de simplificación justificada "
+    "(`groupby` / `resample` / muestreo)"
+)
+
+st.markdown(
+    """
+Se utilizó una técnica de simplificación mediante **agrupación (`groupby`)**.
+Los registros individuales de carpetas de investigación se agruparon según
+la **alcaldía del hecho** y la **categoría general del delito**.
+
+Posteriormente, se contabilizó el número de observaciones de cada combinación
+y se transformó el resultado a un formato ancho, donde cada fila representa
+una alcaldía y cada columna una categoría delictiva.
+
+Esta decisión reduce una base de casi dos millones de registros a una tabla
+resumida que permite comparar de manera directa la distribución territorial
+de los delitos.
+"""
+)
+
 st.subheader(
-    f"Mapa coroplético: {categoria_seleccionada}"
-)
-
-mapa = construir_mapa(
-    municipio_mapa,
-    categoria_seleccionada
-)
-
-st_folium(
-    mapa,
-    width=None,
-    height=620,
-    use_container_width=True,
-    returned_objects=[]
-)
-
-st.subheader(
-    "Tabla de registros por alcaldía"
+    f"Tabla de registros por alcaldía: {categoria_seleccionada}"
 )
 
 tabla = (
@@ -319,6 +328,49 @@ st.download_button(
 )
 
 st.divider()
+
+
+# =========================================================
+# 2. VISUALIZACIÓN INTERACTIVA Y MAPA COROPLÉTICO
+# =========================================================
+
+st.header(
+    "2. Construye una visualización interactiva "
+    "(Plotly o Altair) y un mapa coroplético"
+)
+
+st.markdown(
+    """
+El mapa coroplético representa el número de carpetas de investigación por
+alcaldía. El color de cada polígono cambia de acuerdo con la cantidad de
+registros de la categoría seleccionada.
+
+El selector ubicado en la barra lateral permite cambiar entre el total de
+registros y las distintas categorías generales del delito. Además, al colocar
+el cursor sobre una alcaldía se muestran su nombre y el número correspondiente
+de registros.
+"""
+)
+
+st.subheader(
+    f"Mapa coroplético: {categoria_seleccionada}"
+)
+
+mapa = construir_mapa(
+    municipio_mapa,
+    categoria_seleccionada
+)
+
+st_folium(
+    mapa,
+    width=None,
+    height=620,
+    use_container_width=True,
+    returned_objects=[]
+)
+
+st.divider()
+
 
 st.subheader("Insight y validación")
 
