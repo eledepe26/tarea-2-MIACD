@@ -32,7 +32,6 @@ comparar territorialmente el número de registros.
 2. Construye **una visualización interactiva** (Plotly o Altair) y **un mapa coroplético**.
 3. Pide a una herramienta de IA un *insight* sobre el dataset y **valídalo o refútalo** con tu propio análisis.
 
-En 3-4 líneas: ¿qué decisión de agregación tomaste y cómo cambiaría la historia con otra?
 
 """
 )
@@ -160,7 +159,7 @@ def construir_mapa(municipio_mapa, categoria):
     )
 
     escala.caption = (
-        f"Número de registros: {categoria}"
+        f"Categoría de Delito: {categoria}"
     )
 
     centro = (
@@ -282,7 +281,7 @@ directa la distribución territorial de los delitos.
 )
 
 st.subheader(
-    f"Tabla de registros por alcaldía: {categoria_seleccionada}"
+    f"Carpetas de investigación por alcaldía y categoría de delito: {categoria_seleccionada}"
 )
 
 tabla = (
@@ -373,7 +372,7 @@ de registros.
 )
 
 st.subheader(
-    f"Mapa coroplético: {categoria_seleccionada}"
+    f"Mapa coroplético por categoría de delito: {categoria_seleccionada}"
 )
 
 mapa = construir_mapa(
